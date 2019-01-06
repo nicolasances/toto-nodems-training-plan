@@ -22,12 +22,12 @@ exports.do = function(planId) {
           return;
         }
 
-        var plans = [];
+        var workouts = [];
         for (var i = 0; i < array.length; i++) {
-          plans.push(converter.converter.workoutTO(array[i]));
+          workouts.push(converter.converter.workoutTO(array[i]));
         }
 
-        success({plans: plans});
+        success({workouts: workouts});
 
       });
     });
