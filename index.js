@@ -33,10 +33,10 @@ app.get('/plans', function(req, res) {logger.apiCalled(apiName, '/plans', 'GET',
 
 app.get('/plans/:id', function(req, res) {logger.apiCalled(apiName, '/plans/{id}', 'GET', req.query, req.params, req.body); getPlan.do(req.params.id).then(function(result) {res.send(result);});});
 
-app.post('/plans/:id/workouts', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts', 'POST', req.query, req.params, req.body); postWorkout.do(req.body).then(function(result) {res.send(result);});});
-app.get('/plans/:id/workouts', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts', 'GET', req.query, req.params, req.body); getWorkouts.do(req.query).then(function(result) {res.send(result);});});
+app.post('/plans/:id/workouts', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts', 'POST', req.query, req.params, req.body); postWorkout.do(req.params.id, req.body).then(function(result) {res.send(result);});});
+app.get('/plans/:id/workouts', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts', 'GET', req.query, req.params, req.body); getWorkouts.do(req.params.id, req.query).then(function(result) {res.send(result);});});
 
-app.get('/plans/:id/workouts/:wid', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts/:wid', 'GET', req.query, req.params, req.body); getWorkout.do(req.params.id).then(function(result) {res.send(result);});});
+app.get('/plans/:id/workouts/:wid', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts/:wid', 'GET', req.query, req.params, req.body); getWorkout.do(req.params.id, req.params.wid).then(function(result) {res.send(result);});});
 
 /***********
  * START
