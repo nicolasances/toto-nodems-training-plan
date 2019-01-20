@@ -22,7 +22,7 @@ var api = new Controller('training-plan', app);
 /***************
  * APIS
  ***************/
-api.path('POST', '/plans', postPlans);
+api.path('POST', '/plans', postPlan);
 api.path('GET', '/plans', getPlans);
 
 api.path('GET', '/plans/:pid', getPlan);
