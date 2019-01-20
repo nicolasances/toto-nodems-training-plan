@@ -6,7 +6,7 @@ var MongoClient = mongo.MongoClient;
 
 exports.do = function(req) {
 
-  var filers = req.query;
+  var filters = req.query;
 
   return new Promise(function(success, failure) {
 
