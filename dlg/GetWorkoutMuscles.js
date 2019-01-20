@@ -38,7 +38,7 @@ exports.do = function(req) {
         if (exercises[i].muscleGroupId == null) continue;
 
         // If the muscle hasn't been added, add it
-        if (!addedMuscles.contains(exercises[i].muscleGroupId)) {
+        if (addedMuscles.indexOf(exercises[i].muscleGroupId) != -1) {
 
           // Add to the array
           muscles.push(exercises[i].muscleGroupId);
