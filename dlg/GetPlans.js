@@ -19,7 +19,7 @@ exports.do = function(req) {
       // Sorting
       options.sort = [];
 
-      if (filters.sort == 'start') options.sort.push(['start', filters.sortDir == 'desc' ? 'descending' : 'asc']);
+      if (filters != null && filters.sort == 'start') options.sort.push(['start', filters.sortDir == 'desc' ? 'descending' : 'asc']);
 
       // Max results
       if (filters.maxResults != null) options.limit = parseInt(filters.maxResults);
