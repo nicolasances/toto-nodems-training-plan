@@ -1,7 +1,6 @@
 var express = require('express');
 var Promise = require('promise');
-var bodyParser = require("body-parser");
-var logger = require('toto-apimon-events');
+var Controller = require('toto-api-controller');
 
 var postPlan = require('./dlg/PostPlan');
 var getPlans = require('./dlg/GetPlans');
@@ -10,39 +9,35 @@ var getPlan = require('./dlg/GetPlan');
 var postWorkout = require('./dlg/PostWorkout');
 var getWorkouts = require('./dlg/GetWorkouts');
 var getWorkout = require('./dlg/GetWorkout');
+var getWorkoutMuscles = require('./dlg/GetWorkoutMuscles');
 
 var postExercise = require('./dlg/PostExercise');
 var getExercises = require('./dlg/GetExercises');
 var getExercise = require('./dlg/GetExercise');
 
-var apiName = 'training-plan';
-
 var app = express();
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  res.header("Access-Control-Allow-Methods", "OPTIONS, GET, PUT, POST, DELETE");
-  next();
-});
-app.use(bodyParser.json());
+var api = new Controller('training-plan', app);
 
 /***************
  * APIS
  ***************/
-app.get('/', function(req, res) {res.send({api: apiName, status: 'running'});});
+api.path('POST', '/plans', postPlans);
+api.path('GET', '/plans', getPlans);
 
-app.post('/plans', function(req, res) {logger.apiCalled(apiName, '/plans', 'POST', req.query, req.params, req.body); postPlans.do(req.body).then(function(result) {res.send(result);});});
-app.get('/plans', function(req, res) {logger.apiCalled(apiName, '/plans', 'GET', req.query, req.params, req.body); getPlans.do(req.query).then(function(result) {res.send(result);});});
-app.get('/plans/:id', function(req, res) {logger.apiCalled(apiName, '/plans/{id}', 'GET', req.query, req.params, req.body); getPlan.do(req.params.id).then(function(result) {res.send(result);});});
+api.path('GET', '/plans/:pid', getPlan);
 
-app.post('/plans/:id/workouts', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts', 'POST', req.query, req.params, req.body); postWorkout.do(req.params.id, req.body).then(function(result) {res.send(result);});});
-app.get('/plans/:id/workouts', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts', 'GET', req.query, req.params, req.body); getWorkouts.do(req.params.id, req.query).then(function(result) {res.send(result);});});
-app.get('/plans/:id/workouts/:wid', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts/:wid', 'GET', req.query, req.params, req.body); getWorkout.do(req.params.wid).then(function(result) {res.send(result);});});
+api.path('POST', '/plans/:pid/workouts', postWorkout);
+api.path('GET', '/plans/:pid/workouts', getWorkouts);
 
-app.post('/plans/:id/workouts/:wid/exercises', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts/:wid/exercises', 'POST', req.query, req.params, req.body); postExercise.do(req.params.wid, req.body).then(function(result) {res.send(result);});});
-app.get('/plans/:id/workouts/:wid/exercises', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts/:wid/exercises', 'GET', req.query, req.params, req.body); getExercises.do(req.params.wid, req.query).then(function(result) {res.send(result);});});
-app.get('/plans/:id/workouts/:wid/exercises/:eid', function(req, res) {logger.apiCalled(apiName, '/plans/:id/workouts/:wid/exercises/:eid', 'GET', req.query, req.params, req.body); getExercise.do(req.params.eid).then(function(result) {res.send(result);});});
+api.path('GET', '/plans/:pid/workouts/:wid', getWorkout);
+
+// Retrieves the list of muscles that are impacted by a specified workout
+api.path('GET', '/plans/:pid/workouts/:wid/muscles', getWorkoutMuscles);
+
+api.path('POST', '/plans/:pid/workouts/:wid/exercises', postExercise);
+api.path('GET', '/plans/:pid/workouts/:wid/exercises', getExercises);
+api.path('GET', '/plans/:pid/workouts/:wid/exercises/:eid', getExercise);
 
 /***********
  * START

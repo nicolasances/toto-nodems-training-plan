@@ -4,7 +4,9 @@ var converter = require('../conv/PlanConverter');
 
 var MongoClient = mongo.MongoClient;
 
-exports.do = function(filters) {
+exports.do = function(req) {
+
+  var filers = req.query;
 
   return new Promise(function(success, failure) {
 

@@ -47,7 +47,8 @@ var single = (data) => {
       name: data.name,
       sets: data.sets,
       reps: data.reps,
-      weight: data.weight
+      weight: data.weight,
+      muscleGroupId: data.muscleGroupId
   }
 }
 
@@ -56,8 +57,8 @@ var superset = (data) => {
       planId: data.planId,
       workoutId: data.workoutId,
       type: data.type,
-      ex1: {name: data.ex1.name, benchmarkExerciseId: data.ex1.benchmarkExerciseId, sets: data.ex1.sets, reps: data.ex1.reps, weight: data.ex1.weight},
-      ex2: {name: data.ex2.name, benchmarkExerciseId: data.ex2.benchmarkExerciseId, sets: data.ex2.sets, reps: data.ex2.reps, weight: data.ex2.weight}
+      ex1: {name: data.ex1.name, benchmarkExerciseId: data.ex1.benchmarkExerciseId, sets: data.ex1.sets, reps: data.ex1.reps, weight: data.ex1.weight, muscleGroupId: data.ex1.muscleGroupId},
+      ex2: {name: data.ex2.name, benchmarkExerciseId: data.ex2.benchmarkExerciseId, sets: data.ex2.sets, reps: data.ex2.reps, weight: data.ex2.weight, muscleGroupId: data.ex2.muscleGroupId}
   }
 }
 
@@ -72,7 +73,8 @@ var dropset = (data) => {
       reps1: data.reps1,
       reps2: data.reps2,
       weight1: data.weight1,
-      weight2: data.weight2
+      weight2: data.weight2,
+      muscleGroupId: data.muscleGroupId
   }
 }
 
@@ -89,7 +91,8 @@ var striping = (data) => {
       reps3: data.reps3,
       weight1: data.weight1,
       weight2: data.weight2,
-      weight3: data.weight3
+      weight3: data.weight3,
+      muscleGroupId: data.muscleGroupId
   }
 }
 
@@ -103,6 +106,7 @@ var hourglass = (data) => {
       sets: data.sets,
       weight1: data.weight1,
       weight2: data.weight2,
-      weight3: data.weight3
+      weight3: data.weight3,
+      muscleGroupId: data.muscleGroupId
   }
 }

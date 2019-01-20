@@ -4,7 +4,9 @@ var converter = require('../conv/ExConverter');
 
 var MongoClient = mongo.MongoClient;
 
-exports.do = function(workoutId) {
+exports.do = function(req) {
+
+  var workoutId = req.params.wid;
 
   return new Promise(function(success, failure) {
 

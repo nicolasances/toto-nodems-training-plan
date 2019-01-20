@@ -4,7 +4,9 @@ var converter = require('../conv/WorkoutConverter');
 
 var MongoClient = mongo.MongoClient;
 
-exports.do = function(data) {
+exports.do = function(req) {
+
+  var data = req.body;
 
   return new Promise(function(success, failure) {
 
