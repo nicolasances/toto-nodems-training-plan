@@ -15,13 +15,8 @@ var postExercise = require('./dlg/PostExercise');
 var getExercises = require('./dlg/GetExercises');
 var getExercise = require('./dlg/GetExercise');
 
-var app = express();
+var api = new Controller('training-plan');
 
-var api = new Controller('training-plan', app);
-
-/***************
- * APIS
- ***************/
 api.path('POST', '/plans', postPlan);
 api.path('GET', '/plans', getPlans);
 
@@ -39,9 +34,4 @@ api.path('POST', '/plans/:pid/workouts/:wid/exercises', postExercise);
 api.path('GET', '/plans/:pid/workouts/:wid/exercises', getExercises);
 api.path('GET', '/plans/:pid/workouts/:wid/exercises/:eid', getExercise);
 
-/***********
- * START
- **********/
-app.listen(8080, function() {
-  console.log('Training Plan Microservice up and running');
-});
+api.listen();
