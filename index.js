@@ -1,5 +1,3 @@
-var express = require('express');
-var Promise = require('promise');
 var Controller = require('toto-api-controller');
 
 var postPlan = require('./dlg/PostPlan');
