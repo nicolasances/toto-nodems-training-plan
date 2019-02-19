@@ -11,6 +11,6 @@
   "dependencies": {
     "moment-timezone": "^0.5.23",
     "mongodb": "^3.0.1",
-    "toto-api-controller": "^3.0.1"
+    "toto-api-controller": "^4.0.0"
   }
 }
