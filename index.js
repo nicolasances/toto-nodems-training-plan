@@ -3,6 +3,7 @@ var Controller = require('toto-api-controller');
 var postPlan = require('./dlg/PostPlan');
 var getPlans = require('./dlg/GetPlans');
 var getPlan = require('./dlg/GetPlan');
+var deletePlan = require('./dlg/DeletePlan');
 
 var postWorkout = require('./dlg/PostWorkout');
 var getWorkouts = require('./dlg/GetWorkouts');
@@ -19,6 +20,7 @@ api.path('POST', '/plans', postPlan);
 api.path('GET', '/plans', getPlans);
 
 api.path('GET', '/plans/:pid', getPlan);
+api.path('DELETE', '/plans/:pid', deletePlan);
 
 api.path('POST', '/plans/:pid/workouts', postWorkout);
 api.path('GET', '/plans/:pid/workouts', getWorkouts);
