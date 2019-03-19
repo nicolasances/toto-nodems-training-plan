@@ -34,7 +34,7 @@ exports.converter = {
     to.id = data._id;
 
     return to;
-  }
+  },
 
   /**
    * Updates the exercise with the provided data
