@@ -14,6 +14,7 @@ var postExercise = require('./dlg/PostExercise');
 var getExercises = require('./dlg/GetExercises');
 var getExercise = require('./dlg/GetExercise');
 var putExercise = require('./dlg/PutExercise');
+var deleteExercise = require('./dlg/DeleteExercise');
 
 var api = new Controller('training-plan');
 
@@ -35,5 +36,6 @@ api.path('POST', '/plans/:pid/workouts/:wid/exercises', postExercise);
 api.path('GET', '/plans/:pid/workouts/:wid/exercises', getExercises);
 api.path('GET', '/plans/:pid/workouts/:wid/exercises/:eid', getExercise);
 api.path('PUT', '/plans/:pid/workouts/:wid/exercises/:eid', putExercise);
+api.path('DELETE', '/plans/:pid/workouts/:wid/exercises/:eid', deleteExercise);
 
 api.listen();
