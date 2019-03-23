@@ -13,7 +13,7 @@ exports.do = function(req) {
     return MongoClient.connect(config.mongoUrl, function(err, db) {
 
       // 1. Convert the data
-      let po = converter.converter.planPO(data);
+      let po = converter.converter.workoutPO(data);
 
       // 2. Insert the data
       db.db(config.dbName).collection(config.collections.workouts)
